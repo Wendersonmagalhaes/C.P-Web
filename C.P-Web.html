@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang= "en">
+<head>
+<meta charset ="UTF-8">
+<meta name="viewport" content="width=, initial-scale=1.0">
+<link rel="stylesheet" type="text.css" href="site.css"> 
+    <title>Minha Agenda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        
+            animation: backgroundAnimation 10s linear infinite alternate;
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background: linear-gradient(45deg, #ff5733, #f9d423, #30e3ca, #11998e);
+                background-size: 400% 400%;
+                background-position: 0% 0%;
+            }
+            100% {
+                background: linear-gradient(45deg, #ff5733, #f9d423, #30e3ca, #11998e);
+                background-size: 400% 400%;
+                background-position: 100% 100%;
+            }
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        /body 
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        form {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="date"],
+        input[type="text"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #0099cc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #0099cc;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0077a3;
+        }
+
+        button {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #cc0000;
+        }
+
+    </style>
+</head>
+<body>
+   
+    <h1>Minha Agenda</h1>
+
+   <div>
+  <a href="Teste1.html"><button onclick="redirecionarParaCalendario()">Consultar Calendário</button></a>
+
+</div>
+
+
+    <div>
+        <h2>Adicionar Evento</h2>
+        <form id="agendaForm">
+            <label for="data">Data:</label>
+            <input type="date" id="data" name="data" required><br><br>
+            <label for="evento">Evento:</label>
+            <input type="text" id="evento" name="evento" required><br><br>
+            <input type="submit" value="Adicionar Evento">
+        </form>
+    </div>
+
+    <div>
+        <h2>Eventos Agendados</h2>
+        <table id="agendaTable">
+            <tr>
+                <th>Data</th>
+                <th>Evento</th>
+                <th>acoes</th>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        const agendaForm = document.getElementById('agendaForm');
+        const agendaTable = document.getElementById('agendaTable');
+
+        agendaForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const data = document.getElementById('data').value;
+            const evento = document.getElementById('evento').value;
+
+            const newRow = agendaTable.insertRow(-1);
+            const cell1 = newRow.insertCell(0);
+            const cell2 = newRow.insertCell(1);
+            const cell3 = newRow.insertCell(2);
+
+            cell1.innerHTML = data;
+            cell2.innerHTML = evento;
+            cell3.innerHTML = '<button onclick="deleteEvent(this)">Excluir</button>';
+
+            agendaForm.reset();
+        });
+
+        function deleteEvent(button) {
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+
+        
+        function redirecionarParaCalendario() {
+        window.location.href = "calendario.html"; // Redireciona para a página do calendário
+    
+        }
+    </script>
+</body>
+</html>
